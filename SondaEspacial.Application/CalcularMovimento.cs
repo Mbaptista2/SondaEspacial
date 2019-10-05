@@ -13,16 +13,16 @@ namespace SondaEspacial.Application
             switch (sonda.DirecaoAtual)
             {
                 case eDirecao.Norte:
-                    sonda.PosicaoAtual = new PosicaoSonda(sonda.PosicaoAtual.X, sonda.PosicaoAtual.Y + 1);
+                    sonda.PosicaoAtual = new PosicaoXY(sonda.PosicaoAtual.X, sonda.PosicaoAtual.Y + 1);
                     break;
                 case eDirecao.Leste:
-                    sonda.PosicaoAtual = new PosicaoSonda(sonda.PosicaoAtual.X + 1, sonda.PosicaoAtual.Y);
+                    sonda.PosicaoAtual = new PosicaoXY(sonda.PosicaoAtual.X + 1, sonda.PosicaoAtual.Y);
                     break;
                 case eDirecao.Sul:
-                    sonda.PosicaoAtual = new PosicaoSonda(sonda.PosicaoAtual.X, sonda.PosicaoAtual.Y - 1);
+                    sonda.PosicaoAtual = new PosicaoXY(sonda.PosicaoAtual.X, sonda.PosicaoAtual.Y - 1);
                     break;
                 case eDirecao.Oeste:
-                    sonda.PosicaoAtual = new PosicaoSonda(sonda.PosicaoAtual.X - 1, sonda.PosicaoAtual.Y);
+                    sonda.PosicaoAtual = new PosicaoXY(sonda.PosicaoAtual.X - 1, sonda.PosicaoAtual.Y);
                     break;
             }
         }

@@ -10,27 +10,37 @@ namespace SondaEspacial.Application.ValueObjects
         public Guid Id { get; private set; }
         public string Nome { get; private set; }
         public Planalto Planalto { get; private set; }
-        public PosicaoSonda PosicaoAtual { get; internal set; }
+        public PosicaoXY PosicaoAtual { get; internal set; }
         public eDirecao DirecaoAtual { get; private set; }
-               
+
         public Sonda()
-        {            
+        {
         }
-
-        public Sonda(string nome) 
-        {            
-            Nome = nome;
-        }
-
+       
         public void Explorar(Planalto planalto)
-        {            
+        {
             Planalto = planalto;
         }
 
-        public void IniciarEm(PosicaoSonda posicaoDesejada, eDirecao direcaoCardinalAtual)
-        {                                       
-            PosicaoAtual = posicaoDesejada;
-            DirecaoAtual = direcaoCardinalAtual;
+        public void IniciarPercurso(PosicaoXY posicaoInicial, eDirecao direcaoAtual)
+        {
+            try
+            {
+                if (posicaoInicial == null)
+                    throw new Exception("É necessário informar a posição inicial da sonda.");
+
+
+                if (posicaoInicial.X > Planalto.PosicaoX() || posicaoInicial.Y > Planalto.PosicaoY())
+                    throw new Exception("Posição fora do planalto");
+
+
+                PosicaoAtual = posicaoInicial;
+                DirecaoAtual = direcaoAtual;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
         }
 
         public void Virar(eDirecaoMovimento movimento)
@@ -43,7 +53,18 @@ namespace SondaEspacial.Application.ValueObjects
 
         public void Mover(ICalcularMovimento movimento)
         {
-            movimento.Movimentar(this);
+            try
+            {
+                movimento.Movimentar(this);
+
+                if (PosicaoAtual.X > Planalto.PosicaoX() || PosicaoAtual.Y > Planalto.PosicaoY())
+                    throw new Exception("Posição fora do planalto");
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         private void VirarParaEsquerda()
@@ -75,36 +96,36 @@ namespace SondaEspacial.Application.ValueObjects
             }
         }
 
-            private void VirarParaDireta()
+        private void VirarParaDireta()
+        {
+            switch (DirecaoAtual)
             {
-                switch (DirecaoAtual)
-                {
-                    case eDirecao.Norte:
-                        {
-                            DirecaoAtual = eDirecao.Leste;
-                            break;
-                        }
-                    case eDirecao.Leste:
-                        {
-                            DirecaoAtual = eDirecao.Sul;
-                            break;
-                        }
-                    case eDirecao.Sul:
-                        {
-                            DirecaoAtual = eDirecao.Oeste;
-                            break;
-                        }
-                    case eDirecao.Oeste:
-                        {
-                            DirecaoAtual = eDirecao.Norte;
-                            break;
-                        }
-                    default:
+                case eDirecao.Norte:
+                    {
+                        DirecaoAtual = eDirecao.Leste;
                         break;
-                }
+                    }
+                case eDirecao.Leste:
+                    {
+                        DirecaoAtual = eDirecao.Sul;
+                        break;
+                    }
+                case eDirecao.Sul:
+                    {
+                        DirecaoAtual = eDirecao.Oeste;
+                        break;
+                    }
+                case eDirecao.Oeste:
+                    {
+                        DirecaoAtual = eDirecao.Norte;
+                        break;
+                    }
+                default:
+                    break;
+            }
 
-            
+
         }
-        
+
     }
 }
