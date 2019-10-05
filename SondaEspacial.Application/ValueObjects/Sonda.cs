@@ -6,9 +6,7 @@ using System.Text;
 namespace SondaEspacial.Application.ValueObjects
 {
     public class Sonda
-    {
-        public Guid Id { get; private set; }
-        public string Nome { get; private set; }
+    {        
         public Planalto Planalto { get; private set; }
         public PosicaoXY PosicaoAtual { get; internal set; }
         public eDirecao DirecaoAtual { get; private set; }

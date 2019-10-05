@@ -4,7 +4,7 @@ using System.Text;
 
 namespace SondaEspacial.Application.ValueObjects
 {
-    public class PosicaoXY
+    public class PosicaoXY 
     {
         public int X { get; private set; }
         public int Y { get; private set; }
