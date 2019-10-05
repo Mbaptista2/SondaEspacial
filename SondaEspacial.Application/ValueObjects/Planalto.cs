@@ -8,12 +8,11 @@ namespace SondaEspacial.Application
     public class Planalto
     {
         public PosicaoXY _coordenada { get; private set; }
-
-        public void Criar(PosicaoXY coordenada)
+        public Planalto(PosicaoXY coordenada)
         {
             this._coordenada = coordenada;
         }
-
+              
         public int PosicaoX()
         {
             return _coordenada.X;

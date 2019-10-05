@@ -12,14 +12,11 @@ namespace CSharpTestProject
         private ICalcularMovimento calcularMovimento;
 
         private Sonda IniciarSonda()
-        {
-            Sonda sonda = new Sonda();
+        {          
             var posicaoXY = new PosicaoXY(5, 5);
-            planalto = new Planalto();
-            planalto.Criar(posicaoXY);
-            calcularMovimento = new CalcularMovimento();            
-            sonda.Explorar(planalto);
-
+            planalto = new Planalto(posicaoXY);           
+            Sonda sonda = new Sonda(planalto);
+            calcularMovimento = new CalcularMovimento();                    
             return sonda;
         }
 

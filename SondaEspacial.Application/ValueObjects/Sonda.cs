@@ -11,15 +11,11 @@ namespace SondaEspacial.Application.ValueObjects
         public PosicaoXY PosicaoAtual { get; internal set; }
         public eDirecao DirecaoAtual { get; private set; }
 
-        public Sonda()
-        {
-        }
-       
-        public void Explorar(Planalto planalto)
+        public Sonda(Planalto planalto)
         {
             Planalto = planalto;
         }
-
+              
         public void IniciarPercurso(PosicaoXY posicaoInicial, eDirecao direcaoAtual)
         {
             try
