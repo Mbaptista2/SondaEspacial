@@ -8,15 +8,13 @@ namespace CSharpTestProject
 {
     public class SondaTest
     {
-        private Planalto planalto;      
-        private ICalcularMovimento calcularMovimento;
+        private Planalto planalto;             
 
         private Sonda IniciarSonda()
         {          
             var posicaoXY = new PosicaoXY(5, 5);
             planalto = new Planalto(posicaoXY);           
-            Sonda sonda = new Sonda(planalto);
-            calcularMovimento = new CalcularMovimento();                    
+            Sonda sonda = new Sonda(planalto);                          
             return sonda;
         }
 
@@ -32,14 +30,14 @@ namespace CSharpTestProject
 
             //L M L M L M L M M
             sonda.Virar(eDirecaoMovimento.Esquerda);
-            sonda.Mover(calcularMovimento);
+            sonda.Mover();
             sonda.Virar(eDirecaoMovimento.Esquerda);
-            sonda.Mover(calcularMovimento);
+            sonda.Mover();
             sonda.Virar(eDirecaoMovimento.Esquerda);
-            sonda.Mover(calcularMovimento);
+            sonda.Mover();
             sonda.Virar(eDirecaoMovimento.Esquerda);
-            sonda.Mover(calcularMovimento);
-            sonda.Mover(calcularMovimento);
+            sonda.Mover();
+            sonda.Mover();
           
             Assert.Equal(posicaoFinal, sonda.PosicaoAtual);
             Assert.Equal(eDirecao.Norte, sonda.DirecaoAtual);
@@ -56,16 +54,16 @@ namespace CSharpTestProject
             sonda.IniciarPercurso(posicaoInicial, eDirecao.Leste);
 
             //M_M_R_M_M_R_M_R_R_M
-            sonda.Mover(calcularMovimento);
-            sonda.Mover(calcularMovimento);
+            sonda.Mover();
+            sonda.Mover();
             sonda.Virar(eDirecaoMovimento.Direita);
-            sonda.Mover(calcularMovimento);
-            sonda.Mover(calcularMovimento);
+            sonda.Mover();
+            sonda.Mover();
             sonda.Virar(eDirecaoMovimento.Direita);
-            sonda.Mover(calcularMovimento);
+            sonda.Mover();
             sonda.Virar(eDirecaoMovimento.Direita);
             sonda.Virar(eDirecaoMovimento.Direita);
-            sonda.Mover(calcularMovimento);
+            sonda.Mover();
            
             Assert.Equal(posicaoFinal, sonda.PosicaoAtual);
             Assert.Equal(eDirecao.Leste, sonda.DirecaoAtual);

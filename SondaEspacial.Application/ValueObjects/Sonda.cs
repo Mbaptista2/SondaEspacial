@@ -45,11 +45,25 @@ namespace SondaEspacial.Application.ValueObjects
                 VirarParaEsquerda();
         }
 
-        public void Mover(ICalcularMovimento movimento)
+        public void Mover()
         {
             try
             {
-                movimento.Movimentar(this);
+                switch (DirecaoAtual)
+                {
+                    case eDirecao.Norte:
+                        PosicaoAtual = new PosicaoXY(PosicaoAtual.X, PosicaoAtual.Y + 1);
+                        break;
+                    case eDirecao.Leste:
+                        PosicaoAtual = new PosicaoXY(PosicaoAtual.X + 1, PosicaoAtual.Y);
+                        break;
+                    case eDirecao.Sul:
+                        PosicaoAtual = new PosicaoXY(PosicaoAtual.X, PosicaoAtual.Y - 1);
+                        break;
+                    case eDirecao.Oeste:
+                        PosicaoAtual = new PosicaoXY(PosicaoAtual.X - 1, PosicaoAtual.Y);
+                        break;
+                }
 
                 if (PosicaoAtual.X > Planalto.PosicaoX() || PosicaoAtual.Y > Planalto.PosicaoY())
                     throw new Exception("Posição fora do planalto");
